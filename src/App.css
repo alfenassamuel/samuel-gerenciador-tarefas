@@ -1,0 +1,355 @@
+/* ==========================================================================
+   Estilização do Gerenciador de Tarefas
+   ========================================================================== */
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --bg-card: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --success-color: #10b981;
+  --success-bg: #d1fae5;
+  --warning-color: #f59e0b;
+  --warning-bg: #fef3c7;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Container Principal */
+.app-container {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    margin: 16px;
+    padding: 20px 16px;
+  }
+}
+
+/* Cabeçalho */
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.logo-icone {
+  font-size: 2rem;
+}
+
+.app-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+}
+
+.app-subtitulo {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Seção do Formulário */
+.secao-formulario {
+  margin-bottom: 24px;
+}
+
+.formulario-tarefa {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-grupo {
+  display: flex;
+  gap: 10px;
+}
+
+.input-tarefa {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  background-color: #f8fafc;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.input-tarefa:focus {
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.input-tarefa.input-erro {
+  border-color: var(--danger-color);
+  background-color: #fef2f2;
+}
+
+.texto-erro {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+  padding-left: 4px;
+}
+
+.botao-adicionar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.botao-adicionar:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.botao-adicionar:active {
+  transform: translateY(0);
+}
+
+/* Barra de Filtros */
+.secao-filtros {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.botoes-filtro {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botao-filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.botao-filtro:hover {
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.botao-filtro.ativo {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.badge-contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.botao-filtro.ativo .badge-contador {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Lista de Tarefas */
+.secao-lista {
+  margin-bottom: 24px;
+}
+
+.lista-tarefas {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Item individual da Tarefa */
+.tarefa-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.tarefa-item:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-sm);
+  transform: translateX(2px);
+}
+
+.tarefa-item.concluida {
+  background-color: #f8fafc;
+  opacity: 0.8;
+}
+
+.tarefa-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.tarefa-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tarefa-texto {
+  font-size: 0.98rem;
+  color: var(--text-primary);
+  word-break: break-word;
+  transition: var(--transition);
+}
+
+.tarefa-item.concluida .tarefa-texto {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Ações da Tarefa */
+.tarefa-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-concluida {
+  background-color: var(--success-bg);
+  color: var(--success-color);
+}
+
+.badge-pendente {
+  background-color: var(--warning-bg);
+  color: var(--warning-color);
+}
+
+.botao-remover {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao-remover:hover {
+  background-color: #fee2e2;
+  color: var(--danger-hover);
+  transform: scale(1.1);
+}
+
+/* Estado de Lista Vazia */
+.lista-vazia {
+  text-align: center;
+  padding: 48px 20px;
+  background-color: #f8fafc;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.lista-vazia-icone {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.lista-vazia-texto {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.lista-vazia-subtexto {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Rodapé */
+.app-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.app-footer strong {
+  color: var(--primary-color);
+}
